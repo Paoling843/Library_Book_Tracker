@@ -11,6 +11,58 @@
                 gap: 1rem;
             }
 
+            .lib-filter-bar {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+ 
+        .lib-filter-pill {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 300;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #8a6640;
+            background: transparent;
+            border: 1px solid #d4c4b0;
+            border-radius: 2px;
+            padding: 0.35rem 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+            white-space: nowrap;
+        }
+    
+        .lib-filter-pill:hover {
+            border-color: #8a6640;
+            background: rgba(138,102,64,0.06);
+        }
+    
+        .lib-filter-pill.active {
+            background: #8a6640;
+            border-color: #8a6640;
+            color: #f5ede0;
+        }
+    
+        .dark .lib-filter-pill {
+            color: #c49a6c;
+            border-color: rgba(138,102,64,0.35);
+        }
+    
+        .dark .lib-filter-pill:hover {
+            border-color: #c49a6c;
+            background: rgba(196,154,108,0.08);
+        }
+    
+        .dark .lib-filter-pill.active {
+            background: #c49a6c;
+            border-color: #c49a6c;
+            color: #1e1812;
+        }
+
             .lib-header-title {
                 font-family: 'Playfair Display', Georgia, serif;
                 font-size: 1.5rem;
@@ -487,8 +539,25 @@
 
             {{-- Section rule --}}
             <div class="lib-section-meta">
-                <span class="lib-section-label">{{ $books->count() }} {{ Str::plural('volume', $books->count()) }} in catalogue</span>
-                <div class="lib-section-rule"></div>
+    <span class="lib-section-label">
+        {{ $books->count() }} {{ Str::plural('volume', $books->count()) }} in catalogue
+    </span>
+    <div class="lib-section-rule"></div>
+</div>
+ 
+<div class="lib-filter-bar">
+    <a
+        href="{{ route('books.index') }}"
+        class="lib-filter-pill {{ !request('category_id') ? 'active' : '' }}"
+    >All</a>
+ 
+    @foreach($categories as $category)
+        <a
+            href="{{ route('books.index', ['category_id' => $category->id]) }}"
+            class="lib-filter-pill {{ request('category_id') == $category->id ? 'active' : '' }}"
+        >{{ $category->name }}</a>
+    @endforeach
+</div>
             </div>
 
             {{-- Books grid --}}
@@ -496,6 +565,10 @@
                 <div class="lib-grid">
                     @foreach($books as $index => $book)
                         <div class="lib-card">
+
+                        @if($book->image)
+                            <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}" class="lib-card-image">
+                        @endif
 
                             {{-- Spine --}}
                             <div class="lib-card-spine">
@@ -561,6 +634,11 @@
                                     </div>
                                 @endif
                             @endauth
+
+                            <a href="{{ route('books.read', $book->id) }}"
+                                class="lib-btn">
+                                Read Book
+                            </a>
 
                         </div>
                     @endforeach

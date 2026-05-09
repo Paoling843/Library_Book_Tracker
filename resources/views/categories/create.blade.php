@@ -3,8 +3,8 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap');
 
-            .lib-header-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 600; color: #2c1810; }
-            .lib-header-subtitle { font-family: 'Crimson Pro', Georgia, serif; font-size: 0.875rem; font-style: italic; color: #8a7660; margin-top: 0.2rem; }
+            .lib-header-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 600; color: #2c1810; background: #f9f4ee; padding-inline: 455px; }
+            .lib-header-subtitle { font-family: 'Crimson Pro', Georgia, serif; font-size: 0.875rem; font-style: italic; color: #8a7660; background: #f9f4ee; padding-inline: 455px; }
             .dark .lib-header-title { color: #e8d8c4; }
             .dark .lib-header-subtitle { color: #9a8878; }
         </style>

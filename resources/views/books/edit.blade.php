@@ -5,6 +5,8 @@
 
             .lib-header-wrap {
                 display: flex;
+                background: #f9f4ee;
+                padding-inline: 380px;
                 justify-content: space-between;
                 align-items: center;
                 gap: 1rem;
@@ -364,6 +366,33 @@
                             <label for="content" class="lib-field-label">{{ __('Content') }}</label>
                             <textarea id="content" name="content" rows="16" class="lib-textarea">{{ old('content', $book->content) }}</textarea>
                             @error('content') <p class="lib-input-error">{{ $message }}</p>@enderror
+                        </div>
+
+                        <div>
+                            <label for="status" class="lib-field-label">{{ __('Status') }}</label>
+                            <select name="status"id="status" name="status" class="lib-select">
+                                <option value="borrowed"
+                                        {{ old('status', $book->status) == 'borrowed' ? 'selected' : '' }}>
+                                    Borrowed
+                                </option>
+                                <option value="reserved"
+                                        {{ old('status', $book->status) == 'reserved' ? 'selected' : '' }}>
+                                    Reserved
+                                </option>
+                                <option value="available"
+                                        {{ old('status', $book->status) == 'available' ? 'selected' : '' }}>
+                                    Available
+                                </option>
+                                <option value="maintenance"
+                                        {{ old('status', $book->status) == 'maintenance' ? 'selected' : '' }}>
+                                    Maintenance
+                                </option>
+                                <option value="borrowed"
+                                        {{ old('status', $book->status) == 'borrowed' ? 'selected' : '' }}>
+                                    Borrowed
+                                </option>
+                            </select>
+                            @error('status') <p class="lib-input-error">{{ $message }}</p> @enderror
                         </div>
                         
                     </div>

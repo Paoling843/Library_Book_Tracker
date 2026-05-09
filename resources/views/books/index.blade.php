@@ -6,8 +6,10 @@
             .lib-header-wrap {
                 font-family: 'Playfair Display', Georgia, serif;
                 display: flex;
+                padding-inline: 150px;
                 justify-content: space-between;
                 align-items: center;
+                background: #f9f4ee;
                 gap: 1rem;
             }
 
@@ -208,14 +210,14 @@
             color: #7a6a5a;
         }
 
-        /* ── Book grid ── */
+       
         .lib-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        /* ── Book card ── */
+        
         .lib-card {
             background: #fffdf9;
             border: 1px solid #e0d0bc;
@@ -256,6 +258,48 @@
         .dark .lib-card:hover {
             box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.2);
         }
+        
+        .lib-status {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            font-size: 0.7rem;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .lib-status-available {
+            color: #2e7d32;
+            border-color: #2e7d32;
+            background: rgba(46,125,50,0.08);
+        }
+
+        .lib-status-borrowed {
+            color: #b54a3a;
+            border-color: #b54a3a;
+            background: rgba(181,74,58,0.08);
+        }
+
+        .lib-status-reserved {
+            color: #8a6640;
+            border-color: #8a6640;
+            background: rgba(138,102,64,0.08);
+        }
+
+        .lib-status-maintenance {
+            color: #7b5ea7;
+            border-color: #7b5ea7;
+            background: rgba(123,94,167,0.08);
+        }
+
+        .lib-status-lost {
+            color: #444;
+            border-color: #444;
+            background: rgba(68,68,68,0.08);
+        }
+        
 
         /* ── Card spine (top decorative bar) ── */
         .lib-card-spine {
@@ -524,7 +568,7 @@
         .lib-card:nth-child(n+7) { animation-delay: 0.32s; }
     </style>
 
-    <div class="lib-page py-10">
+    <div class="lib-page py-10 ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {{-- Flash message --}}
@@ -602,6 +646,13 @@
                                         <p class="lib-field-value desc">{{ $book->description }}</p>
                                     </div>
                                 @endif
+
+                                @if($book->status)
+                                    <div>
+                                        <p class="lib-field-label">{{ __('Status') }}</p>
+                                        <span class="lib-status lib-status-{{ $book->status }}">{{ ucfirst($book->status) }}</span>
+                                    </div>
+                                @endif
                             </div>
 
                             {{-- Actions --}}
@@ -662,7 +713,6 @@
                     @endauth
                 </div>
             @endif
-
         </div>
     </div>
 </x-app-layout>

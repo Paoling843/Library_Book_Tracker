@@ -18,6 +18,7 @@ class Book extends Model
         'description',
         'image',
         'content',
+        'status',
     ];
 
     public function category()

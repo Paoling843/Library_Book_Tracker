@@ -99,6 +99,7 @@ class BookController extends Controller
         'category_id' => 'required',
         'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'content' => 'nullable|string',
+        'status' => 'required|in:available,reserved,borrowed,maintenance,lost',
     ]);
 
     $data = $request->all();

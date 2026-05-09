@@ -5,8 +5,9 @@
 
             .lib-header-wrap {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                background: #f9f4ee;
+                padding-inline: 380px;
                 gap: 1rem;
             }
 
@@ -364,6 +365,17 @@
                             <label for="content" class="lib-field-label">{{ __('Content') }}</label>
                             <textarea name="content" rows="12" class="lib-input">{{ old('content') }}</textarea>
                             @error('content') <p class="lib-input-error">{{ $message }}</p>@enderror
+                        </div>
+
+                        <div>
+                            <label for='status' class="lib-field-label">{{ __('Book Status') }}</label>
+                            <select name="status" id="status" class="lib-input">
+                                <option value="available">Available</option>
+                                <option value="borrowed">Borrowed</option>
+                                <option value="reserved">Reserved</option>
+                                <option value="maintenance">Maintenance</option>
+                                <option value="lost">Lost</option>
+                            </select>
                         </div>
                     </div>
 

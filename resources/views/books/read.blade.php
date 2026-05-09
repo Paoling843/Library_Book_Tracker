@@ -5,8 +5,10 @@
 
             .lib-header-wrap {
                 display: flex;
+                padding-inline: 150px;
                 justify-content: space-between;
                 align-items: center;
+                background: #f9f4ee;
                 gap: 1rem;
             }
 
@@ -164,6 +166,47 @@
             color: #5a4838;
         }
 
+        .lib-status {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            font-size: 0.7rem;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .lib-status-available {
+            color: #2e7d32;
+            border-color: #2e7d32;
+            background: rgba(46,125,50,0.08);
+        }
+
+        .lib-status-borrowed {
+            color: #b54a3a;
+            border-color: #b54a3a;
+            background: rgba(181,74,58,0.08);
+        }
+
+        .lib-status-reserved {
+            color: #8a6640;
+            border-color: #8a6640;
+            background: rgba(138,102,64,0.08);
+        }
+
+        .lib-status-maintenance {
+            color: #7b5ea7;
+            border-color: #7b5ea7;
+            background: rgba(123,94,167,0.08);
+        }
+
+        .lib-status-lost {
+            color: #444;
+            border-color: #444;
+            background: rgba(68,68,68,0.08);
+        }
+
         .dark .lib-field-label { color: #6a5a4a; }
         .dark .lib-field-value { color: #e8d8c4; }
         .dark .lib-field-value.desc { color: #9a8878; }
@@ -269,6 +312,12 @@
                             <p class="lib-field-label">{{ __('Author') }}</p>
                             <p class="lib-field-value">{{ $book->author }}</p>
                         </div>
+                        @if($book->status)
+                            <div>
+                                <p class="lib-field-label">{{ __('Status') }}</p>
+                                <span class="lib-status lib-status-{{ $book->status }}">{{ ucfirst($book->status) }}</span>
+                            </div>
+                        @endif
                         @if($book->description)
                             <div>
                                 <p class="lib-field-label" style="margin-top: 0.9rem;">{{ __('Description') }}</p>

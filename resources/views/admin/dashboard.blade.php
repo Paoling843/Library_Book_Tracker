@@ -115,7 +115,6 @@
                     <a href="{{ route('books.index') }}" class="lib-action">{{ __('Manage Books') }}</a>
                     <a href="{{ route('books.create') }}" class="lib-action">{{ __('Add New Book') }}</a>
                     <a href="{{ route('categories.index') }}" class="lib-action">{{ __('Manage Categories') }}</a>
-                    <a href="{{ route('users.index') }}" class="lib-action">{{ __('Manage Users') }}</a>
                 </div>
             </div>
 
